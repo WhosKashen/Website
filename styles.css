@@ -1,0 +1,366 @@
+:root {
+  --primary: #1a1a2e;
+  --secondary: #16213e;
+  --accent: #0f3460;
+  --highlight: #e94560;
+  --text: #fff;
+  --light: #f5f5f5;
+  --shadow: 0 2px 12px rgba(0,0,0,0.10);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: var(--primary);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+header {
+  background: var(--secondary);
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 1.7rem;
+  letter-spacing: 2px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+}
+
+.nav-link {
+  color: var(--text);
+  text-decoration: none;
+  margin-left: 2rem;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.2s;
+}
+
+.nav-link:hover {
+  color: var(--highlight);
+}
+
+.burger {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  background: var(--accent);
+  text-align: center;
+  transition: background 0.3s;
+  animation: fadeIn 1.5s;
+}
+
+.hero-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  animation: slideDown 0.7s;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  animation: fadeIn 1s;
+}
+
+.cta {
+  padding: 0.8rem 2rem;
+  border: none;
+  background: var(--highlight);
+  color: var(--text);
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  box-shadow: var(--shadow);
+}
+
+.cta:hover {
+  background: #d12b45;
+  transform: translateY(-2px) scale(1.03);
+}
+
+section {
+  padding: 4rem 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+section h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: var(--highlight);
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.about p {
+  font-size: 1.1rem;
+  margin-bottom: 1.2rem;
+  text-align: center;
+}
+
+.edit-btn, .add-btn {
+  display: block;
+  margin: 0.5rem auto 0 auto;
+  background: var(--accent);
+  color: var(--text);
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1.5rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.edit-btn:hover, .add-btn:hover {
+  background: var(--highlight);
+}
+
+.projects .project-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.project-card {
+  background: var(--secondary);
+  border-radius: 8px;
+  padding: 1.4rem;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  animation: fadeInUp 0.9s;
+}
+
+.project-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.17);
+}
+
+.project-card h3 {
+  margin-bottom: 0.5rem;
+  color: var(--highlight);
+}
+
+.project-card p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.project-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.project-actions button {
+  padding: 0.3rem 1rem;
+  border: none;
+  border-radius: 5px;
+  background: var(--accent);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+}
+
+.project-actions button:hover {
+  background: var(--highlight);
+}
+
+.contact form {
+  background: var(--secondary);
+  border-radius: 10px;
+  padding: 2rem;
+  max-width: 450px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: var(--shadow);
+}
+
+.contact input, .contact textarea {
+  padding: 0.7rem 1rem;
+  border-radius: 5px;
+  border: none;
+  background: var(--light);
+  color: #222;
+  font-size: 1rem;
+}
+
+.contact textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.contact button[type="submit"] {
+  background: var(--highlight);
+  color: var(--text);
+  border: none;
+  padding: 0.8rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.contact button[type="submit"]:hover {
+  background: #d12b45;
+}
+
+footer {
+  background: var(--secondary);
+  color: var(--text);
+  text-align: center;
+  padding: 1.5rem 0;
+  margin-top: 2rem;
+  position: relative;
+}
+
+.customize-btn {
+  position: absolute;
+  right: 1.5rem;
+  top: 1.2rem;
+  background: var(--accent);
+  color: var(--text);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background 0.2s;
+}
+
+.customize-btn:hover {
+  background: var(--highlight);
+}
+
+.customize-panel {
+  display: none;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: var(--secondary);
+  border-radius: 10px;
+  box-shadow: 0 4px 22px rgba(0,0,0,0.2);
+  padding: 2rem 2rem 1rem 2rem;
+  z-index: 1001;
+  min-width: 260px;
+  color: var(--text);
+  animation: fadeIn 0.6s;
+}
+
+.customize-panel h3 {
+  margin-bottom: 1rem;
+  color: var(--highlight);
+}
+
+.customize-panel label {
+  display: block;
+  margin: 0.7rem 0;
+}
+
+.customize-panel input {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: none;
+  margin-left: 0.5rem;
+  font-size: 1rem;
+  width: 80%;
+}
+
+.customize-panel button {
+  margin: 1rem 0.7rem 0 0;
+  background: var(--accent);
+  color: var(--text);
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.customize-panel button:hover {
+  background: var(--highlight);
+}
+
+@media (max-width: 900px) {
+  .projects .project-list {
+    grid-template-columns: 1fr;
+  }
+  section {
+    padding: 3rem 1rem;
+  }
+}
+
+@media (max-width: 700px) {
+  nav {
+    flex-direction: row;
+    padding: 1rem;
+  }
+  .nav-links {
+    position: fixed;
+    right: 0;
+    top: 65px;
+    background: var(--secondary);
+    height: 100vh;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 180px;
+    transform: translateX(100%);
+    transition: transform 0.4s;
+    box-shadow: -2px 0 16px rgba(0,0,0,0.11);
+    z-index: 1000;
+  }
+  .nav-links.open {
+    transform: translateX(0);
+  }
+  .nav-link {
+    margin: 1.2rem 0 0 1.5rem;
+    font-size: 1.1rem;
+  }
+  .burger {
+    display: block;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0;}
+  to { opacity: 1;}
+}
+@keyframes slideDown {
+  from {transform: translateY(-60px); opacity: 0;}
+  to {transform: translateY(0); opacity: 1;}
+}
+@keyframes fadeInUp {
+  from {transform: translateY(30px); opacity: 0;}
+  to {transform: translateY(0); opacity: 1;}
+}
