@@ -162,15 +162,3 @@ function deleteProject(idx) {
 }
 
 window.addEventListener('DOMContentLoaded', renderProjects);
-
-// Download CV (dummy)
-document.getElementById('downloadCV').onclick = () => {
-  alert('CV download link goes here. Replace this alert with actual file link.');
-};
-
-// Contact Form (dummy)
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  alert('Message sent! (Form processing to be implemented)');
-  this.reset();
-});
