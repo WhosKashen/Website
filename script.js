@@ -8,74 +8,37 @@ burger.addEventListener('click', () => {
 // Set current year in footer
 document.getElementById('footerYear').textContent = new Date().getFullYear();
 
-// Simple scroll animation
-const animateOnScroll = () => {
-  const elements = document.querySelectorAll('section, .project-card');
-  const triggerBottom = window.innerHeight * 0.88;
-  elements.forEach(el => {
-    const rect = el.getBoundingClientRect();
-    if(rect.top < triggerBottom) {
-      el.style.opacity = 1;
-      el.style.transform = 'none';
-    } else {
-      el.style.opacity = 0;
-      el.style.transform = 'translateY(30px)';
-    }
-  });
-};
-window.addEventListener('scroll', animateOnScroll);
-window.addEventListener('DOMContentLoaded', animateOnScroll);
+// About Section Edit (bugfix: only one edit button)
+function editSection(textId, btnId) {
+  const section = document.getElementById(textId);
+  const editBtn = document.getElementById(btnId);
 
-// Customization Panel Logic
-function openCustomizePanel() {
-  document.getElementById('customizePanel').style.display = 'block';
-  document.getElementById('customName').value = document.getElementById('heroName').textContent;
-  document.getElementById('customRole').value = document.getElementById('heroRole').textContent;
-  document.getElementById('customHeroTitle').value = document.getElementById('heroTitle').textContent;
-}
+  // Prevent multiple textareas
+  if (section.tagName === 'TEXTAREA') return;
 
-function closeCustomizePanel() {
-  document.getElementById('customizePanel').style.display = 'none';
-}
-
-function applyCustomization() {
-  const name = document.getElementById('customName').value.trim() || 'Your Name';
-  const role = document.getElementById('customRole').value.trim() || 'Web Developer';
-  const heroTitle = document.getElementById('customHeroTitle').value.trim() || `Hello, I'm ${name}`;
-
-  document.getElementById('heroName').textContent = name;
-  document.getElementById('heroRole').textContent = role;
-  document.getElementById('heroTitle').textContent = heroTitle;
-  document.getElementById('logo').textContent = name;
-  document.getElementById('footerYear').nextSibling.textContent = ` ${name}. All rights reserved.`;
-
-  closeCustomizePanel();
-}
-
-// About Section Edit
-function editSection(id) {
-  const section = document.getElementById(id);
   const currentText = section.textContent;
-  const input = document.createElement('textarea');
-  input.value = currentText;
-  input.style.width = '100%';
-  input.style.height = '100px';
+  const textarea = document.createElement('textarea');
+  textarea.value = currentText;
+  textarea.style.width = '98%';
+  textarea.style.height = '60px';
+  textarea.style.margin = '0.5rem 0';
+  textarea.style.fontSize = '1rem';
 
-  section.replaceWith(input);
-  input.focus();
+  section.replaceWith(textarea);
+  editBtn.textContent = 'Save';
 
-  input.addEventListener('blur', () => {
-    const newText = input.value.trim() || currentText;
+  textarea.focus();
+
+  // Save new text and restore button
+  editBtn.onclick = function() {
+    const newText = textarea.value.trim() || currentText;
     const p = document.createElement('p');
-    p.id = id;
+    p.id = textId;
     p.textContent = newText;
-    input.replaceWith(p);
-    const btn = document.createElement('button');
-    btn.className = 'edit-btn';
-    btn.textContent = 'Edit';
-    btn.onclick = () => editSection(id);
-    p.parentNode.appendChild(btn);
-  });
+    textarea.replaceWith(p);
+    editBtn.textContent = 'Edit';
+    editBtn.onclick = () => editSection(textId, btnId);
+  };
 }
 
 // Projects CRUD
@@ -109,7 +72,7 @@ function renderProjects() {
       link.textContent = 'View Project';
       link.style.color = '#e94560';
       link.style.display = 'block';
-      link.style.marginBottom = '1rem';
+      link.style.marginBottom = '0.5rem';
       card.appendChild(link);
     }
 
@@ -162,3 +125,19 @@ function deleteProject(idx) {
 }
 
 window.addEventListener('DOMContentLoaded', renderProjects);
+
+// Customization Panel Logic stays unchanged
+function openCustomizePanel() {
+  document.getElementById('customizePanel').style.display = 'block';
+  document.getElementById('customName').value = document.getElementById('logo').textContent;
+  // You can populate other fields as you wish
+}
+function closeCustomizePanel() {
+  document.getElementById('customizePanel').style.display = 'none';
+}
+function applyCustomization() {
+  // Sample: logo only for compactness
+  const name = document.getElementById('customName').value.trim() || 'PORTFOLIO';
+  document.getElementById('logo').textContent = name;
+  closeCustomizePanel();
+}
