@@ -18,31 +18,26 @@
     </nav>
   </header>
 
-  <section class="hero" id="hero">
-    <div class="hero-content">
-      <h1 id="heroTitle">Hello, I'm <span id="heroName">Mark Eugene Coralde</span></h1>
-      <p id="heroSubtitle">A Beginner <span id="heroRole">Web Developer</span></p>
-    </div>
-  </section>
+  <main>
+    <section class="about" id="about">
+      <h2>About Me</h2>
+      <div class="about-content">
+        <p id="aboutText">
+          Welcome to portfolio! I am passionate about building good website that improves the ease of access those around me.
+        </p>
+        <button class="edit-btn" id="aboutEditBtn" onclick="editSection('aboutText', 'aboutEditBtn')">Edit</button>
+      </div>
+    </section>
 
-  <section class="about" id="about">
-    <h2>About Me</h2>
-    <p id="aboutText">
-      Welcome to my Simple portfolio! I am passionate about building good website that improves the lives of those around me. 
-    </p>
-    <button class="edit-btn" onclick="editSection('aboutText')">Edit</button>
-  </section>
-
-  <section class="projects" id="projects">
-    <h2>Projects</h2>
-    <div class="project-list" id="projectList">
-      <!-- Projects will be dynamically inserted here -->
-    </div>
-    <button class="add-btn" onclick="addProject()">Add Project</button>
-  </section>
+    <section class="projects" id="projects">
+      <h2>Projects</h2>
+      <div class="project-list" id="projectList"></div>
+      <button class="add-btn" onclick="addProject()">Add Project</button>
+    </section>
+  </main>
 
   <footer>
-    <p>&copy; <span id="footerYear"></span> Mark Eugene Coralde. All rights reserved.</p>
+    <p>&copy; <span id="footerYear"></span> Your Name. All rights reserved.</p>
     <button class="customize-btn" onclick="openCustomizePanel()">Customize</button>
   </footer>
 
