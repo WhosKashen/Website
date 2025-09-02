@@ -8,40 +8,35 @@ burger.addEventListener('click', () => {
 // Set current year in footer
 document.getElementById('footerYear').textContent = new Date().getFullYear();
 
-// About Section Edit (bugfix: only one edit button)
-function editSection(textId, btnId) {
-  const section = document.getElementById(textId);
-  const editBtn = document.getElementById(btnId);
+// --- About Section Editing ---
+const aboutText = document.getElementById('aboutText');
+const aboutEditBtn = document.getElementById('aboutEditBtn');
 
-  // Prevent multiple textareas
-  if (section.tagName === 'TEXTAREA') return;
-
-  const currentText = section.textContent;
+aboutEditBtn.addEventListener('click', function() {
+  // If already editing, this is a Save
+  if (aboutEditBtn.dataset.editing === "true") {
+    const textarea = document.getElementById('aboutTextarea');
+    aboutText.textContent = textarea.value.trim() || "About me information goes here...";
+    textarea.replaceWith(aboutText);
+    aboutEditBtn.textContent = "Edit";
+    aboutEditBtn.dataset.editing = "false";
+    return;
+  }
+  // Otherwise, switch to edit mode
   const textarea = document.createElement('textarea');
-  textarea.value = currentText;
-  textarea.style.width = '98%';
+  textarea.id = 'aboutTextarea';
+  textarea.value = aboutText.textContent.trim();
+  textarea.style.width = '100%';
   textarea.style.height = '60px';
-  textarea.style.margin = '0.5rem 0';
   textarea.style.fontSize = '1rem';
-
-  section.replaceWith(textarea);
-  editBtn.textContent = 'Save';
-
+  textarea.style.margin = '0.3rem 0';
+  aboutText.replaceWith(textarea);
   textarea.focus();
+  aboutEditBtn.textContent = "Save";
+  aboutEditBtn.dataset.editing = "true";
+});
 
-  // Save new text and restore button
-  editBtn.onclick = function() {
-    const newText = textarea.value.trim() || currentText;
-    const p = document.createElement('p');
-    p.id = textId;
-    p.textContent = newText;
-    textarea.replaceWith(p);
-    editBtn.textContent = 'Edit';
-    editBtn.onclick = () => editSection(textId, btnId);
-  };
-}
-
-// Projects CRUD
+// --- Projects CRUD ---
 let projects = [
   {
     title: 'Sample Project',
@@ -126,7 +121,7 @@ function deleteProject(idx) {
 
 window.addEventListener('DOMContentLoaded', renderProjects);
 
-// Customization Panel Logic stays unchanged
+// --- Customization Panel Logic ---
 function openCustomizePanel() {
   document.getElementById('customizePanel').style.display = 'block';
   document.getElementById('customName').value = document.getElementById('logo').textContent;
